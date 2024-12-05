@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive DOM Manipulation</title>
+    <style>
+      body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+      .container {
+            max-width: 400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+       input, button {
+            margin: 10px 0;
+            padding: 10px;
+            width: 80%;
+            font-size: 16px;
+        }
+       #myDiv {
+           margin-top: 20px;
+             padding: 20px;
+           background-color: lightgray;
+          color: black;
+          font-size: 18px;
+          border-radius: 5px;
+            min-height: 50px;
+    }
+    </style>
+ </head>
+ <body>
+    <div class="container">
+        <h1>DOM Manipulation</h1>
+        <input type="text" id="colorInput" placeholder="Enter a color name">
+        <button id="changeBackgroundBtn">Change Background</button>
+        <br>
+        <input type="text" id="textInput" placeholder="Enter some text">
+        <button id="updateTextBtn">Update Text</button>
+        <div id="myDiv">Initial text content</div>
+    </div>
+
+    <script>
+        const changeBackgroundBtn = document.getElementById('changeBackgroundBtn');
+        const updateTextBtn = document.getElementById('updateTextBtn');
+        const colorInput = document.getElementById('colorInput');
+        const textInput = document.getElementById('textInput');
+        const myDiv = document.getElementById('myDiv');
+
+        changeBackgroundBtn.addEventListener('click', () => {
+            const color = colorInput.value.trim();
+            if (color) {
+                myDiv.style.backgroundColor = color;
+                // If the color is valid
+                const tempDiv = document.createElement('div');
+                tempDiv.style.color = color;
+                if (tempDiv.style.color === '') {
+                    alert('Invalid color name!');
+                    myDiv.style.backgroundColor = 'lightgray'; // Reset to default
+                }
+            }
+        });
+
+        updateTextBtn.addEventListener('click', () => {
+            const text = textInput.value.trim();
+            if (text) {
+                myDiv.textContent = text;
+            } else {
+                alert('Please enter some text!');
+            }
+        });
+    </script>
+</body>
+</html>
